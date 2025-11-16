@@ -1,0 +1,35 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.pytest_cache/
+*.DS_Store
+
+# ---- Virtual Environments ----
+venv/
+env/
+.venv/
+
+# ---- FastAPI / Uvicorn ----
+*.log
+
+# ---- Jinja2 Cache ----
+jinja2_cache/
+
+# ---- QR Codes / Generated Files ----
+qr_codes/*.png
+qr_codes/*.jpg
+qr_codes/*.jpeg
+
+# ---- OS Files ----
+.DS_Store
+Thumbs.db
+
+# ---- VS Code ----
+.vscode/
+
+# ---- Environment variables ----
+.env
+.env.*
