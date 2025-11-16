@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "stone-lion",
+    "image": "/static/images/artifacts/stone-lion.jpg",
+    "title": "Stone Lion",
+    "artist": "Unknown",
+    "lender": "City of Regensburg Collection",
+    "description": "A medieval stone lion sculpture representing strength and guardianship."
+  },
+  {
+    "slug": "blue-sky-angel",
+    "image": "/static/images/artifacts/blue-sky-angle.png",
+    "title": "Blue Sky Angel",
+    "artist": "A. Demo",
+    "lender": "Art Foundation",
+    "description": "An angelic figure painted against a serene blue sky, symbolizing hope."
+  },
+  {
+    "slug": "colorful-dream",
+    "image": "/static/images/artifacts/colorful-dream.png",
+    "title": "Colorful Dream",
+    "artist": "B. Demo",
+    "lender": "Private Collection",
+    "description": "A vibrant abstract composition inviting viewers to imagine their own story."
+  }
+]

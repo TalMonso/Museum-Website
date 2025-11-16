@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- HERO with optional background video -->
+<section class="relative h-[60vh] grid place-items-center overflow-hidden">
+  <!-- If you don't have intro.mp4 yet, you can delete the <video> below -->
+  <video autoplay muted loop playsinline class="absolute w-full h-full object-cover">
+    <source src="/static/images/ui/intro.mp4" type="video/mp4"/>
+  </video>
+  <!-- Soft overlay with headline + CTAs -->
+  <div class="relative z-10 text-center bg-white/40 backdrop-blur rounded-2xl p-6 shadow">
+    <h1 class="text-4xl font-bold mb-2">Discover Regensburg through the Digital Museum</h1>
+    <p class="mb-4">Scan the code by the artwork, or explore from home</p>
+    <div class="flex gap-3 justify-center">
+      <a href="/scan" class="px-4 py-2 rounded-xl border hover:bg-black hover:text-white transition">
+        Open Scanner
+      </a>
+      <a href="/about" class="px-4 py-2 rounded-xl border hover:bg-black hover:text-white transition">
+        Read the Vision
+      </a>
+    </div>
+  </div>
+  <!-- A gentle gradient as a visual fallback under the video -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white"></div>
+</section>
+
+<!-- Featured Artifacts Grid -->
+<section class="max-w-6xl mx-auto p-6">
+  <h2 class="text-2xl font-semibold mb-4">Featured Artworks</h2>
+
+  <!-- We expect 'artifacts' from the home route. If missing, show a small hint. -->
+  {% if artifacts %}
+    <div class="grid md:grid-cols-3 gap-6">
+      {% for a in artifacts %}
+        <a href="/artifact/{{ a.slug }}" class="rounded-2xl overflow-hidden border hover:shadow transition block">
+          <img src="{{ a.image }}" alt="{{ a.title }}" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="font-medium">{{ a.title }}</div>
+            <div class="text-sm opacity-70">{{ a.artist }}</div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="rounded-xl border p-6 bg-gray-50">
+      <p class="mb-2 font-medium">No artworks loaded yet.</p>
+      <p class="text-sm opacity-70">Make sure your <code>app/main.py</code> passes <code>artifacts</code> to this template and that <code>app/data/artifacts.json</code> has items.</p>
+    </div>
+  {% endif %}
+</section>
+
+{% endblock %}

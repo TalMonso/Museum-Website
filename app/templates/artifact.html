@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="max-w-5xl mx-auto p-6 grid md:grid-cols-2 gap-6 items-start">
+    <img src="{{ img }}" alt="{{ title }}" class="w-full rounded-2xl border">
+    <div>
+        <h1 class="text-3xl font-bold mb-2">{{ title }}</h1>
+        <p class="mb-3">{{ desc }}</p>
+        <div class="mb-2"><strong>Artist:</strong> {{ artist }}</div>
+        <div class="mb-6"><strong>Lender:</strong> {{ lender }}</div>
+        <div class="flex gap-3">
+        <a href="/edit-art?slug={{slug}}" class="px-4 py-2 rounded-xl border">Edit the Artwork</a>
+        <a href="/scan" class="px-4 py-2 rounded-xl border">Scan another</a>
+    </div>
+    </div>
+</section>
+{% endblock %}
