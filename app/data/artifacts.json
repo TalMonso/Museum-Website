@@ -1,11 +1,11 @@
 [
   {
-    "slug": "stone-lion",
-    "image": "/static/images/artifacts/stone-lion.jpg",
-    "title": "Stone Lion",
-    "artist": "Unknown",
+    "slug": "sunflower-sheep",
+    "image": "/static/images/artifacts/sunflower-sheep.png",
+    "title": "sunflower sheep",
+    "artist": "Vincent Van Kadishman",
     "lender": "City of Regensburg Collection",
-    "description": "A medieval stone lion sculpture representing strength and guardianship."
+    "description": "A spectacular performance by the IsraGerman artist."
   },
   {
     "slug": "blue-sky-angel",
