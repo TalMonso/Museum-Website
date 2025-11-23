@@ -23,13 +23,11 @@ This project demonstrates full-stack development skills, including backend APIs,
 ### **Backend**
 - FastAPI  
 - Jinja2  
-- Pydantic  
-- Python 3.11+  
 
 ### **Frontend**
 - HTML5  
 - CSS3  
-- JavaScript ES6  
+- JavaScript  
 - Camera-based QR scanning (JS library / custom code)
 
 ### **Utility**
