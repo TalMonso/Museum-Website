@@ -1,42 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- HERO with optional background video -->
-<section class="relative h-[60vh] grid place-items-center overflow-hidden">
-  <!-- If you don't have intro.mp4 yet, you can delete the <video> below -->
-  <video autoplay muted loop playsinline class="absolute w-full h-full object-cover">
-    <source src="/static/images/ui/intro.mp4" type="video/mp4"/>
-  </video>
-  <!-- Soft overlay with headline + CTAs -->
-  <div class="relative z-10 text-center bg-white/40 backdrop-blur rounded-2xl p-6 shadow">
-    <h1 class="text-4xl font-bold mb-2">Discover Regensburg through the Digital Museum</h1>
-    <p class="mb-4">Scan the code by the artwork, or explore from home</p>
-    <div class="flex gap-3 justify-center">
-      <a href="/scan" class="px-4 py-2 rounded-xl border hover:bg-black hover:text-white transition">
-        Open Scanner
-      </a>
-      <a href="/about" class="px-4 py-2 rounded-xl border hover:bg-black hover:text-white transition">
+<!-- HERO with museum front image as background -->
+<section class="relative h-[60vh] overflow-hidden bg-center bg-cover" style="background-image: url('/static/images/front.jpg'); filter: grayscale(5%) brightness(0.95);">
+  <!-- Title bar at the top -->
+  <div class="relative z-10 w-full bg-white/30 backdrop-blur py-4 px-4 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Discover Regensburg through the Digital Museum</h1>
+    <p class="text-sm md:text-base mt-1">Scan the code by the artwork, or explore from home</p>
+  </div>
+  
+  <!-- Full image visible below title -->
+  <div class="flex flex-1 flex-col items-center justify-center px-4 pb-6">
+    <div class="flex gap-3">
+      <a href="/about" class="px-4 py-2 rounded-xl border bg-white hover:bg-black hover:text-white transition">
         Read the Vision
       </a>
     </div>
   </div>
-  <!-- A gentle gradient as a visual fallback under the video -->
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white"></div>
+  
+  <!-- Gradient overlay for contrast at bottom -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/40 pointer-events-none"></div>
+</section>
+
+<!-- Secondary banner image (placed below the hero) -->
+<section class="container max-w-6xl mx-auto px-6 py-6">
+  <div class="card overflow-hidden">
+    <img src="/static/images/up.jpg" alt="Banner" class="w-full object-cover h-48 md:h-60" style="object-position:center; filter: saturate(0.9) brightness(0.95);">
+  </div>
 </section>
 
 <!-- Featured Artifacts Grid -->
-<section class="max-w-6xl mx-auto p-6">
+<section class="container max-w-6xl mx-auto p-6">
   <h2 class="text-2xl font-semibold mb-4">Featured Artworks</h2>
 
   <!-- We expect 'artifacts' from the home route. If missing, show a small hint. -->
   {% if artifacts %}
-    <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-6">
       {% for a in artifacts %}
-        <a href="/artifact/{{ a.slug }}" class="rounded-2xl overflow-hidden border hover:shadow transition block">
-          <img src="{{ a.image }}" alt="{{ a.title }}" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <div class="font-medium">{{ a.title }}</div>
-            <div class="text-sm opacity-70">{{ a.artist }}</div>
+        <a href="/artifact/{{ a.slug }}" class="card p-4 block transition hover:shadow">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-medium text-lg">{{ a.title }}</div>
+              <div class="text-sm opacity-70">{{ a.artist }}</div>
+            </div>
+            <div class="text-sm opacity-60">View →</div>
           </div>
         </a>
       {% endfor %}

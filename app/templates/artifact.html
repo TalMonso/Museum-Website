@@ -1,16 +1,63 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="max-w-5xl mx-auto p-6 grid md:grid-cols-2 gap-6 items-start">
-    <img src="{{ img }}" alt="{{ title }}" class="w-full rounded-2xl border">
+<section class="container max-w-5xl mx-auto p-6 grid md:grid-cols-2 gap-6 items-start">
+    <img src="{{ img }}" alt="{{ title }}" class="w-full rounded-2xl card">
     <div>
         <h1 class="text-3xl font-bold mb-2">{{ title }}</h1>
         <p class="mb-3">{{ desc }}</p>
         <div class="mb-2"><strong>Artist:</strong> {{ artist }}</div>
         <div class="mb-6"><strong>Lender:</strong> {{ lender }}</div>
+        
+        <!-- Audio Player with Language Selection -->
+        <div class="card p-4 mb-6">
+            <div class="mb-3">
+                <label class="block text-sm font-semibold mb-2">Listen to the Story</label>
+                <div class="flex gap-2 mb-3">
+                    <button class="lang-btn px-3 py-1 rounded-md border text-sm font-medium transition" data-lang="en" data-slug="{{ slug }}">🇬🇧 English</button>
+                    <button class="lang-btn px-3 py-1 rounded-md border text-sm font-medium transition" data-lang="du" data-slug="{{ slug }}">🇳🇱 Dutch</button>
+                    <button class="lang-btn px-3 py-1 rounded-md border text-sm font-medium transition" data-lang="he" data-slug="{{ slug }}">🇮🇱 Hebrew</button>
+                </div>
+            </div>
+            <audio id="audioPlayer" controls class="w-full">
+                <source id="audioSource" src="/static/audio/{{ slug }}-en.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
         <div class="flex gap-3">
         <a href="/artifact/{{ slug }}/edit" class="px-4 py-2 rounded-xl border">Edit the Artwork</a>
         <a href="/scan" class="px-4 py-2 rounded-xl border">Scan another</a>
     </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const audioSource = document.getElementById('audioSource');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const slug = document.querySelector('.lang-btn').getAttribute('data-slug');
+
+    // Use slug-based audio filenames by default (e.g. Guardian-of-the-Light-en.wav)
+    // Set initial active button
+    const enBtn = document.querySelector('[data-lang="en"]');
+    if (enBtn) enBtn.classList.add('bg-gray-900', 'text-white');
+
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+
+            // Update audio source to use slug-based file names
+            const candidate = `/static/audio/${slug}-${lang}.wav`;
+            audioSource.src = candidate;
+            audioPlayer.load();
+            audioPlayer.play().catch(() => {});
+
+            // Update button styles
+            langBtns.forEach(b => b.classList.remove('bg-gray-900', 'text-white'));
+            this.classList.add('bg-gray-900', 'text-white');
+        });
+    });
+});
+</script>
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="max-w-6xl mx-auto p-6 grid lg:grid-cols-2 gap-6">
+<section class="container max-w-6xl mx-auto p-6 grid lg:grid-cols-2 gap-6">
     <div>
-    <canvas id="canvas" class="w-full border rounded-2xl"></canvas>
+    <canvas id="canvas" class="w-full rounded-2xl card"></canvas>
     <div class="mt-3 flex gap-2">
     <button class="px-3 py-2 border rounded" onclick="addSun()">☀️ Add Sun</button>
     <button class="px-3 py-2 border rounded" onclick="addCloud()">☁️ Add Clouds</button>
@@ -13,7 +13,7 @@
     <div>
     <h2 class="text-2xl font-bold mb-2">Design the artwork yourself</h2>
     <p class="opacity-80 mb-4">Add elements, try different backgrounds, and save to your phone.</p>
-    {% if img %}<img src="{{ img }}" class="rounded-xl border"/>{% endif %}
+    {% if img %}<img src="{{ img }}" class="rounded-xl card"/>{% endif %}
     </div>
 </section>
 <script src="/static/js/edit.js"></script>

@@ -1,0 +1,30 @@
+:root{
+  --accent: #111827; /* slate-900 */
+  --muted: #6b7280; /* gray-500 */
+  --radius: 12px;
+}
+
+/* Basic helpers */
+.container{max-width:72rem}
+.brand{line-height:1}
+.brand .text-lg{letter-spacing:-0.2px}
+
+/* Cards */
+.card{border-radius:var(--radius); background:white; box-shadow:0 6px 18px rgba(15,23,42,0.06); border:1px solid rgba(15,23,42,0.04)}
+
+/* Footer tweaks */
+.site-footer a{color:var(--accent)}
+
+/* Accessibility focus outline */
+:focus{outline:3px solid rgba(59,130,246,0.2); outline-offset:2px}
+
+/* Small screens tweaks */
+@media (max-width: 768px){
+  .container{padding-left:1rem;padding-right:1rem}
+}
+
+/* Improve image rendering */
+img{image-rendering:auto}
+
+/* Utility for muted text */
+.muted{color:var(--muted)}

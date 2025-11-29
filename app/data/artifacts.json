@@ -1,26 +1,26 @@
 [
   {
-    "slug": "sunflower-sheep",
-    "image": "/static/images/artifacts/sunflower-sheep.png",
-    "title": "sunflower sheep",
-    "artist": "Vincent Van Kadishman",
+    "slug": "Guardian-of-the-Light",
+    "image": "/static/images/artifacts/Guardian-of-the-Light.png",
+    "title": "Guardian of the Light",
+    "artist": "Joachim Rauber",
     "lender": "City of Regensburg Collection",
     "description": "A spectacular performance by the IsraGerman artist."
   },
   {
-    "slug": "blue-sky-angel",
-    "image": "/static/images/artifacts/blue-sky-angle.png",
-    "title": "Blue Sky Angel",
-    "artist": "A. Demo",
-    "lender": "Art Foundation",
+    "slug": "Minutes-Before-the-Change",
+    "image": "/static/images/artifacts/Minutes-Before-the-Change.png",
+    "title": "Minutes Before the Change",
+    "artist": "Clara Winter",
+    "lender": "BIPA Foundation",
     "description": "An angelic figure painted against a serene blue sky, symbolizing hope."
   },
   {
-    "slug": "colorful-dream",
-    "image": "/static/images/artifacts/colorful-dream.png",
-    "title": "Colorful Dream",
-    "artist": "B. Demo",
-    "lender": "Private Collection",
+    "slug": "Geometry-of-Dreams",
+    "image": "/static/images/artifacts/Geometry-of-Dreams.png",
+    "title": "Geometry of Dreams",
+    "artist": "Luca Ferreira",
+    "lender": "Tech 7 innovations",
     "description": "A vibrant abstract composition inviting viewers to imagine their own story."
   }
 ]

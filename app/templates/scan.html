@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="max-w-xl mx-auto p-6 text-center">
+<section class="container max-w-xl mx-auto p-6 text-center">
     <h2 class="text-2xl font-bold mb-2">Barcode/QR Scanner</h2>
     <p class="mb-4">Allow camera access and point at the label.</p>
-    <video id="preview" autoplay muted playsinline class="w-full rounded-2xl border"></video>
+    <video id="preview" autoplay muted playsinline class="w-full rounded-2xl card"></video>
     <p class="text-sm opacity-70 mt-3">Tip: works on https or localhost</p>
 </section>
 <script src="https://unpkg.com/@zxing/browser@latest"></script>
 <script src="/static/js/scan.js"></script>
+{% endblock %}
