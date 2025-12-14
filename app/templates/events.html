@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container max-w-6xl mx-auto p-6">
+    <div class="text-center mb-16 mt-8" data-aos="fade-down">
+        <h1 class="text-5xl font-playfair font-bold mb-4">Cultural Workshops</h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">Immerse yourself in Bavarian heritage through our hands-on ateliers. Located on the 2nd floor.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+        
+        <div class="card overflow-hidden group" data-aos="fade-up" data-aos-delay="0">
+            <div class="h-48 overflow-hidden relative">
+                <img src="/static/images/wurst.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute top-4 right-4 bg-accent text-black font-bold px-3 py-1 rounded text-xs uppercase">Culinary</div>
+            </div>
+            <div class="p-6">
+                <div class="text-xs text-gray-500 mb-2">Sat, Dec 14 • 11:00 AM</div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition">Traditional Wurst Making</h3>
+                <p class="text-sm text-gray-400 mb-6">Learn the secrets of Regensburg spices and craft your own Bratwurst with local butchers.</p>
+                <button class="w-full py-2 border border-white/10 rounded-lg hover:bg-white hover:text-black transition text-sm">Join Waitlist</button>
+            </div>
+        </div>
+
+        <div class="card overflow-hidden group" data-aos="fade-up" data-aos-delay="150">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?w=500&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute top-4 right-4 bg-white text-black font-bold px-3 py-1 rounded text-xs uppercase">History</div>
+            </div>
+            <div class="p-6">
+                <div class="text-xs text-gray-500 mb-2">Sun, Dec 15 • 18:00 PM</div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition">Beer Brewing & Tasting</h3>
+                <p class="text-sm text-gray-400 mb-6">A journey through 500 years of the Purity Law (Reinheitsgebot) including a tasting session.</p>
+                <button class="w-full py-2 bg-accent text-black font-bold rounded-lg hover:brightness-110 transition text-sm">Book Now (€25)</button>
+            </div>
+        </div>
+
+        <div class="card overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+            <div class="h-48 overflow-hidden relative">
+                <img src="/static/images/dirndl.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute top-4 right-4 bg-accent text-black font-bold px-3 py-1 rounded text-xs uppercase">Fashion</div>
+            </div>
+            <div class="p-6">
+                <div class="text-xs text-gray-500 mb-2">Fri, Dec 20 • 14:00 PM</div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition">The Art of the Dirndl</h3>
+                <p class="text-sm text-gray-400 mb-6">Understand the craftsmanship behind traditional Bavarian attire and stitching techniques.</p>
+                <button class="w-full py-2 border border-white/10 rounded-lg hover:bg-white hover:text-black transition text-sm">View Details</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

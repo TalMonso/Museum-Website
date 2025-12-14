@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="relative h-[40vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2000&auto=format&fit=crop');"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg-dark/80 via-bg-dark/50 to-bg-dark"></div>
+    
+    <div class="relative z-10 text-center" data-aos="zoom-in">
+        <h1 class="text-6xl font-playfair text-accent mb-2">Café Himmel</h1>
+        <p class="text-xl text-gray-300 font-light tracking-widest uppercase">Rooftop Experience • Level 4</p>
+    </div>
+</div>
+
+<section class="container max-w-5xl mx-auto p-6 -mt-12 relative z-20">
+    
+    <div class="grid md:grid-cols-2 gap-12">
+        
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-bold mb-6 border-b border-white/10 pb-4">Kaffeehaus Classics</h2>
+            <div class="space-y-6">
+                
+                <div class="flex gap-4 group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=200&h=200&fit=crop" class="w-20 h-20 rounded-lg object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div>
+                        <div class="flex justify-between items-baseline w-full">
+                            <h3 class="text-lg font-bold group-hover:text-accent transition">Wiener Melange</h3>
+                            <span class="text-accent">€4.50</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Espresso topped with steamed milk and foam.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 group cursor-pointer">
+                    <img src="/static/images/einspanner.jpg" class="w-20 h-20 rounded-lg object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div>
+                        <div class="flex justify-between items-baseline w-full">
+                            <h3 class="text-lg font-bold group-hover:text-accent transition">Einspänner</h3>
+                            <span class="text-accent">€5.20</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Strong black coffee topped with heavy whipped cream.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-3xl font-bold mb-6 border-b border-white/10 pb-4">Bavarian Sweets</h2>
+            <div class="space-y-6">
+                
+                <div class="flex gap-4 group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1579306194872-64d3b7bac4c2?w=200&h=200&fit=crop" class="w-20 h-20 rounded-lg object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div>
+                        <div class="flex justify-between items-baseline w-full">
+                            <h3 class="text-lg font-bold group-hover:text-accent transition">Schwarzwälder Kirschtorte</h3>
+                            <span class="text-accent">€6.80</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Traditional Black Forest cake with cherries and schnapps.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1621236378699-8597faf6a176?w=200&h=200&fit=crop" class="w-20 h-20 rounded-lg object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div>
+                        <div class="flex justify-between items-baseline w-full">
+                            <h3 class="text-lg font-bold group-hover:text-accent transition">Apfelstrudel</h3>
+                            <span class="text-accent">€5.50</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Warm apple strudel served with vanilla sauce.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-16 text-center" data-aos="fade-in" data-aos-delay="400">
+        <p class="text-gray-400 mb-4">Reserve a table with a view of the Danube.</p>
+        <button class="px-8 py-3 border border-accent text-accent rounded-full hover:bg-accent hover:text-black transition">
+            Book a Table (Demo)
+        </button>
+    </div>
+
+</section>
+{% endblock %}

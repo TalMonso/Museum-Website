@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .museum-container {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        margin: 40px auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .museum-image {
+        width: 100%;
+        display: block;
+        filter: brightness(0.9) saturate(1.1);
+        transition: filter 0.5s;
+    }
+    
+    .hotspot {
+        position: absolute;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(212, 175, 55, 0.0);
+    }
+
+    .hotspot:hover {
+        background: rgba(212, 175, 55, 0.15); 
+        border-color: #d4af37;
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    }
+
+    /* data card */
+    .info-overlay {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        background: rgba(20, 20, 24, 0.95);    
+        backdrop-filter: blur(15px);
+        padding: 25px;
+        border-radius: 16px;
+        border-left: 4px solid #d4af37;
+        max-width: 320px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .info-overlay.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* locations */
+    #spot-roof { top: 0%; left: 0%; width: 48%; height: 20%; }
+    #spot-upper { top: 20%; left: 0%; width: 48%; height: 40%; }
+    #spot-ground { top: 60%; left: 0%; width: 48%; height: 40%; }
+    #spot-historic { top: 30%; left: 49%; width: 51%; height: 70%; }
+
+</style>
+
+<section class="container mx-auto p-6 text-center">
+    <h1 class="text-4xl font-bold mb-3">The Architectural Fusion</h1>
+    <p class="text-gray-400 mb-8 max-w-2xl mx-auto text-lg">
+        Hover over the different sections to explore how the historic theater and modern complex blend into a new cultural hub.
+    </p>
+
+    <div class="museum-container" id="museumMap">
+        <img src="/static/images/museum_front.jpg" alt="Regensburg Museum" class="museum-image">
+        
+        <div class="hotspot" id="spot-roof" 
+             data-title="Rooftop Terrace & Sky Bar" 
+             data-desc="Enjoy panoramic views of Regensburg cathedral from the modern rooftop garden and café."></div>
+             
+        <div class="hotspot" id="spot-upper" 
+             data-title="Pop-up Museums & Galleries" 
+             data-desc="The middle floors host dynamic, ever-changing Pop-up exhibitions and digital art installations."></div>
+             
+        <div class="hotspot" id="spot-ground" 
+             data-title="Main Entrance & Underground Club" 
+             data-desc="The bustling lobby leads down to an exclusive night club and event space in the basement level."></div>
+             
+        <div class="hotspot" id="spot-historic" 
+             data-title="Historic Theater Wing" 
+             data-desc="The preserved classical facade houses the main auditorium for performances and classical art workshops."></div>
+
+        <div class="info-overlay" id="infoCard">
+            <h3 class="text-xl font-bold text-white mb-2" id="infoTitle"></h3>
+            <p class="text-gray-300 leading-relaxed" id="infoDesc"></p>
+        </div>
+    </div>
+</section>
+
+<script>
+    const hotspots = document.querySelectorAll('.hotspot');
+    const infoCard = document.getElementById('infoCard');
+    const infoTitle = document.getElementById('infoTitle');
+    const infoDesc = document.getElementById('infoDesc');
+    const img = document.querySelector('.museum-image');
+
+    hotspots.forEach(spot => {
+        spot.addEventListener('mouseenter', function() {
+            infoTitle.innerText = this.getAttribute('data-title');
+            infoDesc.innerText = this.getAttribute('data-desc');
+            
+            infoCard.classList.add('active');
+            
+            img.style.filter = "brightness(0.5) saturate(0.8) blur(2px)"; 
+        });
+
+        spot.addEventListener('mouseleave', function() {
+            infoCard.classList.remove('active');
+            img.style.filter = "brightness(0.9) saturate(1.1) blur(0px)";
+        });
+    });
+</script>
+
+{% endblock %}

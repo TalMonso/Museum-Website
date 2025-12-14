@@ -1,92 +1,135 @@
 <!doctype html>
 <html lang="en">
 <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta name="description" content="Regensburg Digital Museum — explore artworks with QR scanning or from home">
-        <title>Regensburg Digital Museum</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/static/css/style.css">
-        <style>body{font-family:'Rubik', system-ui, sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Regensburg Digital Museum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- Global Theme Variables --- */
+        :root {
+            --bg-dark: #0f1012;       
+            --bg-card: #1c1c1f;       
+            --text-main: #e2e2e2;     
+            --text-muted: #a1a1aa;    
+            --accent: #d4af37;        /* Museum Gold */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            /* Subtle gradient background */
+            background-image: radial-gradient(circle at 50% 0%, #2a2a35 0%, var(--bg-dark) 80%);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Typography - Serif for Headings */
+        h1, h2, h3, h4, h5, h6, .brand {
+            font-family: 'Playfair Display', serif;
+            color: #ffffff !important;
+            letter-spacing: 0.01em;
+        }
+
+        p, li, span, div { color: var(--text-main); }
+        .text-muted { color: var(--text-muted) !important; }
+        .text-accent { color: var(--accent) !important; }
+
+        /* Glassmorphism Card Style */
+        .card {
+            background: rgba(28, 28, 31, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
+        }
+
+        /* Navbar Styling */
+        .site-header {
+            background: rgba(15, 16, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .brand div:first-child {
+            background: var(--accent) !important;
+            color: #000 !important;
+        }
+        
+        nav a { color: var(--text-muted) !important; transition: 0.3s; font-size: 0.95rem; }
+        nav a:hover { color: var(--accent) !important; }
+
+        /* Forms & Buttons */
+        input, textarea, select {
+            background-color: rgba(0,0,0,0.3) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            color: #fff !important;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus { border-color: var(--accent) !important; outline: none; }
+        
+        button, .btn {
+             border-radius: 50px;
+             font-weight: 500;
+             transition: all 0.3s;
+        }
+    </style>
 </head>
-<body class="bg-white text-gray-900">
-        <header class="site-header bg-white border-b">
-            <div class="container max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-                <a href="/" class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gray-100 rounded-lg grid place-items-center text-xl font-bold">RM</div>
-                    <div class="brand">
-                        <div class="text-lg font-semibold">Regensburg</div>
-                        <div class="text-xs opacity-70 -mt-1">Digital Museum</div>
-                    </div>
-                </a>
-
-                <div class="hidden md:flex items-center gap-6">
-                    <nav class="flex gap-4 text-sm text-gray-700">
-                        <a href="/about" class="hover:underline">About</a>
-                        <a href="/scan" class="hover:underline">Scan</a>
-                        <a href="/" class="hover:underline">Explore</a>
-                    </nav>
-                    <form action="/search" method="get" class="relative">
-                        <input name="q" placeholder="Search artworks" class="px-3 py-2 rounded-lg border w-64 text-sm" />
-                    </form>
-                </div>
-
-                <div class="md:hidden">
-                    <button id="menu-toggle" aria-label="Toggle menu" class="p-2 rounded-md border">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div id="mobile-menu" class="md:hidden hidden border-t">
-                <div class="px-4 py-3">
-                    <a href="/about" class="block py-2">About</a>
-                    <a href="/scan" class="block py-2">Scan</a>
-                    <a href="/" class="block py-2">Explore</a>
-                    <form action="/search" method="get" class="mt-2">
-                        <input name="q" placeholder="Search artworks" class="px-3 py-2 rounded-lg border w-full text-sm" />
-                    </form>
-                </div>
-            </div>
-        </header>
-
-        <main class="min-h-[60vh]">
-            {% block content %}{% endblock %}
-        </main>
-
-        <footer class="site-footer bg-gray-50 border-t mt-12">
-            <div class="container max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-3 gap-4">
+<body>
+    <header class="site-header sticky top-0 z-50">
+        <div class="container max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 brand hover:opacity-90 transition">
+                <div class="w-10 h-10 rounded-lg grid place-items-center text-xl font-bold shadow-lg shadow-yellow-900/20">RM</div>
                 <div>
-                    <div class="font-semibold">Regensburg Digital Museum</div>
-                    <div class="text-sm opacity-70">A small demo project showcasing museum artifacts and QR-driven experiences.</div>
+                    <div class="text-lg font-bold leading-none">Regensburg</div>
+                    <div class="text-[10px] uppercase tracking-widest text-accent opacity-90">Digital Museum</div>
                 </div>
-                <div class="text-sm opacity-80">
-                    <div class="font-medium mb-2">Links</div>
-                    <a href="/about" class="block py-1">About</a>
-                    <a href="/scan" class="block py-1">Scan</a>
-                </div>
-                <div class="text-sm opacity-80">
-                    <div class="font-medium mb-2">Contact</div>
-                    <div class="py-1">demo@example.org</div>
-                    <div class="py-1">© Demo project</div>
-                </div>
-            </div>
-        </footer>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="/">Gallery</a>
+                <a href="/museum">The Building</a>
+                <a href="/events">Workshops</a>
+                <a href="/cafe">Rooftop Café</a>
+                <a href="/partners">Partners</a>
+                <a href="/scan" class="px-5 py-2 bg-gradient-to-r from-accent to-yellow-700 text-black rounded-full font-bold hover:scale-105 transition shadow-lg shadow-yellow-900/30 border-none">Scan QR</a>
+            </nav>
+        </div>
+    </header>
 
-        <script>
-            // Mobile menu toggle
-            document.addEventListener('DOMContentLoaded', function(){
-                const btn = document.getElementById('menu-toggle');
-                const menu = document.getElementById('mobile-menu');
-                if(!btn) return;
-                btn.addEventListener('click', function(){
-                    menu.classList.toggle('hidden');
-                });
-            });
-        </script>
+    <main class="min-h-[80vh]">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="mt-20 py-10 text-center text-sm border-t border-white/5 bg-black/20">
+        <div class="mb-4 flex justify-center gap-4 opacity-50">
+            <a href="#" class="hover:text-accent">Privacy</a>
+            <a href="#" class="hover:text-accent">Terms</a>
+            <a href="/about" class="hover:text-accent">Vision</a>
+        </div>
+        <p class="opacity-40">© 2024 Regensburg Digital Museum Competition Draft</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 50
+      });
+    </script>
 </body>
 </html>

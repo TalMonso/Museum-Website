@@ -37,22 +37,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const audioSource = document.getElementById('audioSource');
     const audioPlayer = document.getElementById('audioPlayer');
     const slug = document.querySelector('.lang-btn').getAttribute('data-slug');
-
-    // Use slug-based audio filenames by default (e.g. Guardian-of-the-Light-en.wav)
+    
+    // Map slug to audio filename
+    const audioMap = {
+        'Guardian-of-the-Light': 'sheep',
+        'Minutes-Before-the-Change': 'sky',
+        'Geometry-of-Dreams': 'colors'
+    };
+    
+    const audioName = audioMap[slug] || slug.toLowerCase();
+    
+    // Set initial audio source
+    audioSource.src = `/static/audio/${audioName}-en.wav`;
+    
     // Set initial active button
-    const enBtn = document.querySelector('[data-lang="en"]');
-    if (enBtn) enBtn.classList.add('bg-gray-900', 'text-white');
-
+    document.querySelector('[data-lang="en"]').classList.add('bg-gray-900', 'text-white');
+    
     langBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const lang = this.getAttribute('data-lang');
-
-            // Update audio source to use slug-based file names
-            const candidate = `/static/audio/${slug}-${lang}.wav`;
-            audioSource.src = candidate;
+            
+            // Update audio source
+            audioSource.src = `/static/audio/${audioName}-${lang}.wav`;
             audioPlayer.load();
-            audioPlayer.play().catch(() => {});
-
+            audioPlayer.play();
+            
             // Update button styles
             langBtns.forEach(b => b.classList.remove('bg-gray-900', 'text-white'));
             this.classList.add('bg-gray-900', 'text-white');
