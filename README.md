@@ -1,37 +1,90 @@
-# 🏛️ Museum Interactive Web App
+# 🏛️ Regensburg Digital Museum Platform
 
-An interactive museum web application built using **FastAPI**, **Jinja2**, and **JavaScript**, allowing users to browse artifacts, view detailed pages, edit content, and scan QR codes attached to physical exhibits.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-High_Performance-009688?style=for-the-badge&logo=fastapi)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=for-the-badge&logo=javascript)
 
-This project demonstrates full-stack development skills, including backend APIs, dynamic HTML rendering, data storage, and client-side interactions.
+> **A "Phygital" (Physical + Digital) museum experience designed to bridge historical heritage with modern interactive technology.**
 
----
+## 📖 Overview
 
-## 🚀 Main Features
+The **Regensburg Digital Museum** is a high-performance web platform designed for an international competition. It transforms a traditional museum visit into an interactive journey. The project focuses on **User Experience (UX)**, **Performance**, and **Business Viability** by integrating features like AR-style scanning, art remixing, and corporate partnership management.
 
-- 🖼️ **Artifact Pages** - view detailed information about museum items  
-- ✏️ **Content Editing** - edit artifact information through web forms  
-- 📡 **QR Code Scanning** - scan codes using a device camera  
-- 🔗 **QR Generation** - automatic creation of QR codes for artifacts  
-- 🎨 **Jinja Templates** - dynamic HTML rendering  
-- 🗂️ **Clean Structure** - organized static files, templates, and routes  
-- 📱 **Responsive UI** - optimized for mobile and desktop  
+**Key Objective:** To attract younger audiences and corporate partners to the cultural heart of Regensburg through a seamless digital layer.
 
 ---
 
-## 🛠️ Technologies & Libraries
+## 📸 Interface Gallery
 
-### **Backend**
-- FastAPI  
-- Jinja2  
+### 🏠 The "Phygital" Gateway (Home & Building)
+The landing page connects the physical theater building with its digital twin. Users can interactively explore floors via a visual map, discovering pop-up galleries and hidden spaces.
 
-### **Frontend**
-- HTML5  
-- CSS3  
-- JavaScript  
-- Camera-based QR scanning (JS library / custom code)
+| Home Page | Interactive Structure Map |
+|:---:|:---:|
+| ![Home Page](docs/home_page.jpg) | ![Building Map](docs/interactive_building.jpg) |
 
-### **Utility**
-- `qrcode` Python library for generating QR images  
-- JSON-based artifact storage
+### 🎨 Interactive Art & Remix Engine
+A zero-latency, client-side editor allowing visitors to "remix" famous artworks using atmospheric filters (Noir, Cyberpunk, Vintage). It features multi-language audio guides (EN, DE, HE).
+
+| Artwork Details & Audio | Real-time Canvas Editor |
+|:---:|:---:|
+| ![Artwork Detail](docs/artifact_details.jpg) | ![Editor Interface](docs/editor_canvas.jpg) |
+
+### 💼 Business & Culture Modules
+To ensure economic viability, the platform includes modules for corporate partnerships ("Hidden Treasures" program), cultural workshops, and the rooftop culinary experience.
+
+| Corporate Partners Portal | Cultural Workshops | Rooftop Café Menu |
+|:---:|:---:|:---:|
+| ![Partners](docs/partners_form.jpg) | ![Workshops](docs/workshops_list.jpg) | ![Cafe](docs/cafe_menu.jpg) |
 
 ---
+
+## 🏗️ Architecture & Flow
+
+The system is built on a **Lightweight Monolithic Architecture** to ensure maximum speed and low latency, critical for mobile users scanning QR codes on-site.
+
+```mermaid
+graph TD
+    User((Visitor / User))
+    Browser[Mobile/Desktop Browser]
+    
+    subgraph "Backend (FastAPI)"
+        Router[FastAPI Router]
+        Logic[Business Logic Layer]
+        TemplateEngine[Jinja2 Renderer]
+    end
+    
+    subgraph "Data Layer"
+        JSON[(Artifacts.json)]
+        Static[Static Assets]
+    end
+
+    User -->|Scans QR / Visits| Browser
+    Browser -->|HTTP GET/POST| Router
+    Router --> Logic
+    Logic -->|Read Data| JSON
+    Logic --> TemplateEngine
+    TemplateEngine -->|HTML + Tailwind| Browser
+    Browser -->|Fetch Images/JS| Static
+    
+    style User fill:#f9f,stroke:#333,stroke-width:2px
+    style Router fill:#bbf,stroke:#333,stroke-width:2px
+    style JSON fill:#dfd,stroke:#333,stroke-width:2px
+Tech Stack
+Backend: Python FastAPI (chosen for its async capabilities and speed).
+
+Frontend: Server-Side Rendering with Jinja2, styled with TailwindCSS via CDN for rapid prototyping.
+
+Interactivity: Vanilla JavaScript (Canvas API) for image processing on the client side (Zero-latency editing).
+
+Data: JSON-based flat-file database (Optimized for read-heavy operations in a prototype environment).
+
+🚀 Key Features
+⚡ Zero-Latency Editing: The "Remix" feature processes images directly in the browser using the Canvas API, avoiding expensive server round-trips.
+
+🌍 Multi-Language Support: Built-in audio guide toggles for English, German, and Hebrew to support international tourism.
+
+📱 Mobile-First Design: All interfaces, including the partnership forms and workshop booking, are optimized for touch devices.
+
+🏢 Business Integration: Dedicated flows for B2B partnerships (lending art) and B2C revenue streams (workshops/café).
