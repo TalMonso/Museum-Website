@@ -40,37 +40,6 @@ To ensure economic viability, the platform includes modules for corporate partne
 
 ---
 
-## 🏗️ Architecture & Flow
-
-The system is built on a **Lightweight Monolithic Architecture** to ensure maximum speed and low latency, critical for mobile users scanning QR codes on-site.
-
-```mermaid
-graph TD
-    User((Visitor / User))
-    Browser[Mobile/Desktop Browser]
-    
-    subgraph "Backend (FastAPI)"
-        Router[FastAPI Router]
-        Logic[Business Logic Layer]
-        TemplateEngine[Jinja2 Renderer]
-    end
-    
-    subgraph "Data Layer"
-        JSON[(Artifacts.json)]
-        Static[Static Assets]
-    end
-
-    User -->|Scans QR / Visits| Browser
-    Browser -->|HTTP GET/POST| Router
-    Router --> Logic
-    Logic -->|Read Data| JSON
-    Logic --> TemplateEngine
-    TemplateEngine -->|HTML + Tailwind| Browser
-    Browser -->|Fetch Images/JS| Static
-    
-    style User fill:#f9f,stroke:#333,stroke-width:2px
-    style Router fill:#bbf,stroke:#333,stroke-width:2px
-    style JSON fill:#dfd,stroke:#333,stroke-width:2px
 Tech Stack
 Backend: Python FastAPI (chosen for its async capabilities and speed).
 
