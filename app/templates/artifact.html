@@ -14,7 +14,7 @@
                 <label class="block text-sm font-semibold mb-2">Listen to the Story</label>
                 <div class="flex gap-2 mb-3">
                     <button class="lang-btn px-3 py-1 rounded-md border text-sm font-medium transition" data-lang="en" data-slug="{{ slug }}">🇬🇧 English</button>
-                    <button class="lang-btn px-3 py-1 rounded-md border text-sm font-medium transition" data-lang="du" data-slug="{{ slug }}">🇩🇪 German</button>
+                    <button class="lang-btn px-3 py-1 rounded-md border text-sm font-medium transition" data-lang="de" data-slug="{{ slug }}">🇩🇪 German</button>
                     <button class="lang-btn px-3 py-1 rounded-md border text-sm font-medium transition" data-lang="he" data-slug="{{ slug }}">🇮🇱 Hebrew</button>
                 </div>
             </div>
@@ -32,38 +32,46 @@
 </section>
 
 <script>
+/**
+ * Audio Player Logic for Artifact Page
+ * Handles multi-language audio switching dynamically based on the artifact slug.
+ */
 document.addEventListener('DOMContentLoaded', function() {
+    // --- DOM Elements Selection ---
     const langBtns = document.querySelectorAll('.lang-btn');
     const audioSource = document.getElementById('audioSource');
     const audioPlayer = document.getElementById('audioPlayer');
+    
+    // Extract the unique slug (ID) of the artifact from the data attribute
     const slug = document.querySelector('.lang-btn').getAttribute('data-slug');
     
-    // Map slug to audio filename
-    const audioMap = {
-        'Guardian-of-the-Light': 'sheep',
-        'Minutes-Before-the-Change': 'sky',
-        'Geometry-of-Dreams': 'colors'
-    };
+    // --- Configuration ---
+    // We use the slug directly as the base filename.
+    const audioName = slug; 
     
-    const audioName = audioMap[slug] || slug.toLowerCase();
-    
-    // Set initial audio source
+    // --- Initialization ---
     audioSource.src = `/static/audio/${audioName}-en.wav`;
     
-    // Set initial active button
-    document.querySelector('[data-lang="en"]').classList.add('bg-gray-900', 'text-white');
+    const enBtn = document.querySelector('[data-lang="en"]');
+    if(enBtn) enBtn.classList.add('bg-gray-900', 'text-white');
     
+    // --- Event Listeners ---
     langBtns.forEach(btn => {
         btn.addEventListener('click', function() {
+            // Get the selected language code (en, de, he) from the button
             const lang = this.getAttribute('data-lang');
             
-            // Update audio source
+            // Update the audio source path
             audioSource.src = `/static/audio/${audioName}-${lang}.wav`;
+            
+            // Reload the audio element to apply the new source and start playing
             audioPlayer.load();
             audioPlayer.play();
             
-            // Update button styles
+            // Remove active styling from all buttons
             langBtns.forEach(b => b.classList.remove('bg-gray-900', 'text-white'));
+            
+            // Apply active styling to the clicked button
             this.classList.add('bg-gray-900', 'text-white');
         });
     });
