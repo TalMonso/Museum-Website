@@ -29,7 +29,7 @@ A zero-latency, client-side editor allowing visitors to "remix" famous artworks 
 
 | Artwork Details & Audio | Real-time Canvas Editor |
 |:---:|:---:|
-| ![Artwork Detail](docs/artifact_details.jpg) | ![Editor Interface](docs/editor_canvas.jpg) |
+| ![Artwork Detail](docs/artifact_details.png) | ![Editor Interface](docs/editor_canvas.png) |
 
 ### 💼 Business & Culture Modules
 To ensure economic viability, the platform includes modules for corporate partnerships ("Hidden Treasures" program), cultural workshops, and the rooftop culinary experience.
