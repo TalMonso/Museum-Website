@@ -40,7 +40,7 @@ To ensure economic viability, the platform includes modules for corporate partne
 
 ---
 
-Tech Stack
+### Tech Stack
 Backend: Python FastAPI (chosen for its async capabilities and speed).
 
 Frontend: Server-Side Rendering with Jinja2, styled with TailwindCSS via CDN for rapid prototyping.
